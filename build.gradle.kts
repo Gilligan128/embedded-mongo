@@ -23,12 +23,15 @@ repositories {
 }
 
 dependencies {
+	implementation(kotlin("stdlib"))
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	testImplementation("junit:junit:4.12")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+
 }
 
 tasks.withType<KotlinCompile> {
@@ -36,4 +39,8 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "1.8"
 	}
+}
+
+tasks.withType<Test> {
+	useJUnit {}
 }
