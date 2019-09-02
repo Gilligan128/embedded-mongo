@@ -1,15 +1,11 @@
 package com.henke.embeddedmongo
 
+import com.mongodb.MongoClient
+import org.junit.After
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration
-import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
-import org.springframework.test.annotation.DirtiesContext
-import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
