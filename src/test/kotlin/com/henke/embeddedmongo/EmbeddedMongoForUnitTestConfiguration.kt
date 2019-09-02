@@ -30,6 +30,15 @@ open class EmbeddedMongoForUnitTestConfiguration {
         return MongoExecutable
     }
 
+    @Bean(destroyMethod = "invoke")
+    @DependsOn("mongodExecutable")
+    open fun cleanup(mongoTemplate: MongoTemplate): () -> Boolean {
+        return {
+            mongoTemplate.db.drop()
+            true
+        }
+    }
+
     companion object {
         val MongoExecutable: MongodExecutable by lazy {
             val config = MongodConfigBuilder()
@@ -38,10 +47,9 @@ open class EmbeddedMongoForUnitTestConfiguration {
                     .build()
             val executable = MongodStarter.getDefaultInstance().prepare(config)
             executable.start()
-            Runtime.getRuntime().addShutdownHook(Thread(){
+            Runtime.getRuntime().addShutdownHook(Thread() {
                 @Override
-                fun run()
-                {
+                fun run() {
                     executable.stop()
                 }
             })

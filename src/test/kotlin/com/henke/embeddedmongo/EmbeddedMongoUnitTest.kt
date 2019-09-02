@@ -6,6 +6,6 @@ import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ContextConfiguration
 
 @DataMongoTest(excludeAutoConfiguration = [EmbeddedMongoAutoConfiguration::class])
-@ContextConfiguration(classes = [EmbeddedMongoForUnitTestConfiguration::class, MongoDbPerContextConfiguration::class])
+@ContextConfiguration(classes = [EmbeddedMongoForUnitTestConfiguration::class])
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD) //Ensures we clean the db before each test
 annotation class EmbeddedMongoUnitTest
